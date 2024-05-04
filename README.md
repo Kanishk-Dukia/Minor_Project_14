@@ -31,11 +31,6 @@ Category & City Selection:
 
 ![image](https://github.com/Kanishk-Dukia/Minor_Project_14/assets/96687742/fc57bd69-48e1-4d78-8752-b65b48a34e5c)
 
-Product Detail:
-
-<img width="971" alt="image" src="https://github.com/Kanishk-Dukia/Minor_Project_14/assets/96687742/ecebd443-a265-4930-8643-5004c12717cb">
-
-
 
 To run this project first download the file then:
 
