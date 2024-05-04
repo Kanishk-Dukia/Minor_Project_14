@@ -1,0 +1,20 @@
+.cat-container {
+    height: 3em;
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+
+
+}
+
+.category {
+    margin: 1em 1em 1em 1em;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.category-main {
+    margin: 1em 1em 1em 1em;
+    font-size: 1.5em;
+    font-weight: bold;
+}

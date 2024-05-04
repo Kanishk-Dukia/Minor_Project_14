@@ -1,0 +1,182 @@
+<% layout('layouts/boilerplate') %>
+
+    <div class="container mt-4">
+        <section class="background-gradient overflow-hidden">
+            <style>
+                .background-gradient {
+                    background: linear-gradient(to right bottom, #6a11cb, #2575fc);
+                }
+
+                .card {
+                    background-color: rgba(255, 255, 255, 0.9);
+                    border-radius: 20px;
+                    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+                }
+
+                .form-control {
+                    border: none;
+                    border-radius: 20px;
+                    padding: 1rem;
+                    background-color: rgba(255, 255, 255, 0.8);
+                    box-shadow: none;
+                }
+
+                .form-control:focus {
+                    background-color: rgba(255, 255, 255, 1);
+                }
+
+                .btn-primary {
+                    background-color: #ff4e50;
+                    border: none;
+                    border-radius: 20px;
+                    padding: 1rem 2rem;
+                    font-weight: bold;
+                    transition: background-color 0.3s ease;
+                }
+
+                .btn-primary:hover {
+                    background-color: #ff3d43;
+                }
+
+                .btn-block {
+                    width: 100%;
+                }
+
+                .btn-back {
+                    color: #000;
+                    text-decoration: none;
+                    font-weight: bold;
+                    transition: color 0.3s ease;
+                }
+
+                .btn-back:hover {
+                    color: #ccc;
+                }
+
+                .error-msg {
+                    color: #ff4444;
+                    font-size: 0.9rem;
+                }
+            </style>
+
+            <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+                <div class="row gx-lg-5 align-items-center mb-5">
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <h1 class="my-5 display-5 fw-bold ls-tight" style="color: #fff;">
+                            File Your Complaint
+                        </h1>
+                        <p class="mb-4 opacity-70" style="color: #ccc;">
+                            If you have any concerns or complaints, please use this form to submit your complaint. We'll
+                            address it as soon as possible.
+                        </p>
+                    </div>
+
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <div class="card">
+                            <div class="card-body px-4 py-5 px-md-5">
+                                <form action="/complaint" method="POST" id="complaintForm" novalidate
+                                    class="validated-form">
+                                    <h1 class="mb-4 h3" style="color: #333;">File a Complaint</h1>
+
+                                    <div class="form-outline mb-4">
+                                        <input type="text" name="name" id="formName" class="form-control" required
+                                            placeholder="Your Name" />
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <input type="email" name="email" id="formEmail" class="form-control" required
+                                            placeholder="Email Address" />
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <input type="tel" name="phone" id="formPhone" class="form-control" required
+                                            placeholder="Phone Number" />
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <textarea name="complaint" id="formComplaint" class="form-control" rows="4"
+                                            required placeholder="Your Complaint"></textarea>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <select name="category" id="formCategory" class="form-control" required>
+                                            <option value="" disabled selected>Select Category</option>
+                                            <option value="electricity">Electricity Department</option>
+                                            <option value="water">Water and Sanitation Department</option>
+                                            <option value="road">Road Safety Department</option>
+                                            <option value="traffic">Traffic Department</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="image" style="color: #333;">Upload Images</label>
+                                        <input type="file" class="form-control" id="image" name="image" multiple
+                                            required>
+                                    </div>
+
+                                    <div class="form-check mb-4">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
+                                            onclick="getLocation()">
+                                        <label class="form-check-label" for="flexCheckDefault" style="color: #333;">
+                                            Share my location
+                                        </label>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary btn-block mb-4">
+                                        Submit Complaint
+                                    </button>
+
+                                    <div class="text-center">
+                                        <p>Back to <a href="/" class="btn-back">Home</a></p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+
+    <script>
+        const x = document.getElementById("demo");
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            const form = document.getElementById("complaintForm");
+
+            // Create hidden input fields for latitude and longitude
+            const latitudeInput = document.createElement("input");
+            latitudeInput.type = "hidden";
+            latitudeInput.name = "latitude";
+            latitudeInput.value = latitude;
+
+            const longitudeInput = document.createElement("input");
+            longitudeInput.type = "hidden";
+            longitudeInput.name = "longitude";
+            longitudeInput.value = longitude;
+
+            // Append the input fields to the form
+            form.appendChild(latitudeInput);
+            form.appendChild(longitudeInput);
+
+            // Now, submit the form
+        }
+    </script>
+
+    
