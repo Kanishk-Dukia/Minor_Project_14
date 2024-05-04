@@ -1,4 +1,4 @@
-#Accident Prone
+# Accident Prone
 
 To run this project first download it then using npm install dependencies using the command (npm install). Also in .env add the keys required by making accounts on required sites.
 
@@ -17,7 +17,7 @@ Complaint File Interface:
 
 
 
-#Gum Tree
+# Gum Tree
 
 DashBoard:
 
